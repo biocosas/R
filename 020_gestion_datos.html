@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+<title>Gestión de datos con R</title>
+
+<script type="text/javascript">
+window.onload = function() {
+  var imgs = document.getElementsByTagName('img'), i, img;
+  for (i = 0; i < imgs.length; i++) {
+    img = imgs[i];
+    // center an image if it is the only element of its parent
+    if (img.parentElement.childElementCount === 1)
+      img.parentElement.style.textAlign = 'center';
+  }
+};
+</script>
+
+<!-- Styles for R syntax highlighter -->
+<style type="text/css">
+   pre .operator,
+   pre .paren {
+     color: rgb(104, 118, 135)
+   }
+
+   pre .literal {
+     color: #990073
+   }
+
+   pre .number {
+     color: #099;
+   }
+
+   pre .comment {
+     color: #998;
+     font-style: italic
+   }
+
+   pre .keyword {
+     color: #900;
+     font-weight: bold
+   }
+
+   pre .identifier {
+     color: rgb(0, 0, 0);
+   }
+
+   pre .string {
+     color: #d14;
+   }
+</style>
+
+<!-- R syntax highlighter -->
+<script type="text/javascript">
+var hljs=new function(){function m(p){return p.replace(/&/gm,"&amp;").replace(/</gm,"&lt;")}function f(r,q,p){return RegExp(q,"m"+(r.cI?"i":"")+(p?"g":""))}function b(r){for(var p=0;p<r.childNodes.length;p++){var q=r.childNodes[p];if(q.nodeName=="CODE"){return q}if(!(q.nodeType==3&&q.nodeValue.match(/\s+/))){break}}}function h(t,s){var p="";for(var r=0;r<t.childNodes.length;r++){if(t.childNodes[r].nodeType==3){var q=t.childNodes[r].nodeValue;if(s){q=q.replace(/\n/g,"")}p+=q}else{if(t.childNodes[r].nodeName=="BR"){p+="\n"}else{p+=h(t.childNodes[r])}}}if(/MSIE [678]/.test(navigator.userAgent)){p=p.replace(/\r/g,"\n")}return p}function a(s){var r=s.className.split(/\s+/);r=r.concat(s.parentNode.className.split(/\s+/));for(var q=0;q<r.length;q++){var p=r[q].replace(/^language-/,"");if(e[p]){return p}}}function c(q){var p=[];(function(s,t){for(var r=0;r<s.childNodes.length;r++){if(s.childNodes[r].nodeType==3){t+=s.childNodes[r].nodeValue.length}else{if(s.childNodes[r].nodeName=="BR"){t+=1}else{if(s.childNodes[r].nodeType==1){p.push({event:"start",offset:t,node:s.childNodes[r]});t=arguments.callee(s.childNodes[r],t);p.push({event:"stop",offset:t,node:s.childNodes[r]})}}}}return t})(q,0);return p}function k(y,w,x){var q=0;var z="";var s=[];function u(){if(y.length&&w.length){if(y[0].offset!=w[0].offset){return(y[0].offset<w[0].offset)?y:w}else{return w[0].event=="start"?y:w}}else{return y.length?y:w}}function t(D){var A="<"+D.nodeName.toLowerCase();for(var B=0;B<D.attributes.length;B++){var C=D.attributes[B];A+=" "+C.nodeName.toLowerCase();if(C.value!==undefined&&C.value!==false&&C.value!==null){A+='="'+m(C.value)+'"'}}return A+">"}while(y.length||w.length){var v=u().splice(0,1)[0];z+=m(x.substr(q,v.offset-q));q=v.offset;if(v.event=="start"){z+=t(v.node);s.push(v.node)}else{if(v.event=="stop"){var p,r=s.length;do{r--;p=s[r];z+=("</"+p.nodeName.toLowerCase()+">")}while(p!=v.node);s.splice(r,1);while(r<s.length){z+=t(s[r]);r++}}}}return z+m(x.substr(q))}function j(){function q(x,y,v){if(x.compiled){return}var u;var s=[];if(x.k){x.lR=f(y,x.l||hljs.IR,true);for(var w in x.k){if(!x.k.hasOwnProperty(w)){continue}if(x.k[w] instanceof Object){u=x.k[w]}else{u=x.k;w="keyword"}for(var r in u){if(!u.hasOwnProperty(r)){continue}x.k[r]=[w,u[r]];s.push(r)}}}if(!v){if(x.bWK){x.b="\\b("+s.join("|")+")\\s"}x.bR=f(y,x.b?x.b:"\\B|\\b");if(!x.e&&!x.eW){x.e="\\B|\\b"}if(x.e){x.eR=f(y,x.e)}}if(x.i){x.iR=f(y,x.i)}if(x.r===undefined){x.r=1}if(!x.c){x.c=[]}x.compiled=true;for(var t=0;t<x.c.length;t++){if(x.c[t]=="self"){x.c[t]=x}q(x.c[t],y,false)}if(x.starts){q(x.starts,y,false)}}for(var p in e){if(!e.hasOwnProperty(p)){continue}q(e[p].dM,e[p],true)}}function d(B,C){if(!j.called){j();j.called=true}function q(r,M){for(var L=0;L<M.c.length;L++){if((M.c[L].bR.exec(r)||[null])[0]==r){return M.c[L]}}}function v(L,r){if(D[L].e&&D[L].eR.test(r)){return 1}if(D[L].eW){var M=v(L-1,r);return M?M+1:0}return 0}function w(r,L){return L.i&&L.iR.test(r)}function K(N,O){var M=[];for(var L=0;L<N.c.length;L++){M.push(N.c[L].b)}var r=D.length-1;do{if(D[r].e){M.push(D[r].e)}r--}while(D[r+1].eW);if(N.i){M.push(N.i)}return f(O,M.join("|"),true)}function p(M,L){var N=D[D.length-1];if(!N.t){N.t=K(N,E)}N.t.lastIndex=L;var r=N.t.exec(M);return r?[M.substr(L,r.index-L),r[0],false]:[M.substr(L),"",true]}function z(N,r){var L=E.cI?r[0].toLowerCase():r[0];var M=N.k[L];if(M&&M instanceof Array){return M}return false}function F(L,P){L=m(L);if(!P.k){return L}var r="";var O=0;P.lR.lastIndex=0;var M=P.lR.exec(L);while(M){r+=L.substr(O,M.index-O);var N=z(P,M);if(N){x+=N[1];r+='<span class="'+N[0]+'">'+M[0]+"</span>"}else{r+=M[0]}O=P.lR.lastIndex;M=P.lR.exec(L)}return r+L.substr(O,L.length-O)}function J(L,M){if(M.sL&&e[M.sL]){var r=d(M.sL,L);x+=r.keyword_count;return r.value}else{return F(L,M)}}function I(M,r){var L=M.cN?'<span class="'+M.cN+'">':"";if(M.rB){y+=L;M.buffer=""}else{if(M.eB){y+=m(r)+L;M.buffer=""}else{y+=L;M.buffer=r}}D.push(M);A+=M.r}function G(N,M,Q){var R=D[D.length-1];if(Q){y+=J(R.buffer+N,R);return false}var P=q(M,R);if(P){y+=J(R.buffer+N,R);I(P,M);return P.rB}var L=v(D.length-1,M);if(L){var O=R.cN?"</span>":"";if(R.rE){y+=J(R.buffer+N,R)+O}else{if(R.eE){y+=J(R.buffer+N,R)+O+m(M)}else{y+=J(R.buffer+N+M,R)+O}}while(L>1){O=D[D.length-2].cN?"</span>":"";y+=O;L--;D.length--}var r=D[D.length-1];D.length--;D[D.length-1].buffer="";if(r.starts){I(r.starts,"")}return R.rE}if(w(M,R)){throw"Illegal"}}var E=e[B];var D=[E.dM];var A=0;var x=0;var y="";try{var s,u=0;E.dM.buffer="";do{s=p(C,u);var t=G(s[0],s[1],s[2]);u+=s[0].length;if(!t){u+=s[1].length}}while(!s[2]);if(D.length>1){throw"Illegal"}return{r:A,keyword_count:x,value:y}}catch(H){if(H=="Illegal"){return{r:0,keyword_count:0,value:m(C)}}else{throw H}}}function g(t){var p={keyword_count:0,r:0,value:m(t)};var r=p;for(var q in e){if(!e.hasOwnProperty(q)){continue}var s=d(q,t);s.language=q;if(s.keyword_count+s.r>r.keyword_count+r.r){r=s}if(s.keyword_count+s.r>p.keyword_count+p.r){r=p;p=s}}if(r.language){p.second_best=r}return p}function i(r,q,p){if(q){r=r.replace(/^((<[^>]+>|\t)+)/gm,function(t,w,v,u){return w.replace(/\t/g,q)})}if(p){r=r.replace(/\n/g,"<br>")}return r}function n(t,w,r){var x=h(t,r);var v=a(t);var y,s;if(v){y=d(v,x)}else{return}var q=c(t);if(q.length){s=document.createElement("pre");s.innerHTML=y.value;y.value=k(q,c(s),x)}y.value=i(y.value,w,r);var u=t.className;if(!u.match("(\\s|^)(language-)?"+v+"(\\s|$)")){u=u?(u+" "+v):v}if(/MSIE [678]/.test(navigator.userAgent)&&t.tagName=="CODE"&&t.parentNode.tagName=="PRE"){s=t.parentNode;var p=document.createElement("div");p.innerHTML="<pre><code>"+y.value+"</code></pre>";t=p.firstChild.firstChild;p.firstChild.cN=s.cN;s.parentNode.replaceChild(p.firstChild,s)}else{t.innerHTML=y.value}t.className=u;t.result={language:v,kw:y.keyword_count,re:y.r};if(y.second_best){t.second_best={language:y.second_best.language,kw:y.second_best.keyword_count,re:y.second_best.r}}}function o(){if(o.called){return}o.called=true;var r=document.getElementsByTagName("pre");for(var p=0;p<r.length;p++){var q=b(r[p]);if(q){n(q,hljs.tabReplace)}}}function l(){if(window.addEventListener){window.addEventListener("DOMContentLoaded",o,false);window.addEventListener("load",o,false)}else{if(window.attachEvent){window.attachEvent("onload",o)}else{window.onload=o}}}var e={};this.LANGUAGES=e;this.highlight=d;this.highlightAuto=g;this.fixMarkup=i;this.highlightBlock=n;this.initHighlighting=o;this.initHighlightingOnLoad=l;this.IR="[a-zA-Z][a-zA-Z0-9_]*";this.UIR="[a-zA-Z_][a-zA-Z0-9_]*";this.NR="\\b\\d+(\\.\\d+)?";this.CNR="\\b(0[xX][a-fA-F0-9]+|(\\d+(\\.\\d*)?|\\.\\d+)([eE][-+]?\\d+)?)";this.BNR="\\b(0b[01]+)";this.RSR="!|!=|!==|%|%=|&|&&|&=|\\*|\\*=|\\+|\\+=|,|\\.|-|-=|/|/=|:|;|<|<<|<<=|<=|=|==|===|>|>=|>>|>>=|>>>|>>>=|\\?|\\[|\\{|\\(|\\^|\\^=|\\||\\|=|\\|\\||~";this.ER="(?![\\s\\S])";this.BE={b:"\\\\.",r:0};this.ASM={cN:"string",b:"'",e:"'",i:"\\n",c:[this.BE],r:0};this.QSM={cN:"string",b:'"',e:'"',i:"\\n",c:[this.BE],r:0};this.CLCM={cN:"comment",b:"//",e:"$"};this.CBLCLM={cN:"comment",b:"/\\*",e:"\\*/"};this.HCM={cN:"comment",b:"#",e:"$"};this.NM={cN:"number",b:this.NR,r:0};this.CNM={cN:"number",b:this.CNR,r:0};this.BNM={cN:"number",b:this.BNR,r:0};this.inherit=function(r,s){var p={};for(var q in r){p[q]=r[q]}if(s){for(var q in s){p[q]=s[q]}}return p}}();hljs.LANGUAGES.cpp=function(){var a={keyword:{"false":1,"int":1,"float":1,"while":1,"private":1,"char":1,"catch":1,"export":1,virtual:1,operator:2,sizeof:2,dynamic_cast:2,typedef:2,const_cast:2,"const":1,struct:1,"for":1,static_cast:2,union:1,namespace:1,unsigned:1,"long":1,"throw":1,"volatile":2,"static":1,"protected":1,bool:1,template:1,mutable:1,"if":1,"public":1,friend:2,"do":1,"return":1,"goto":1,auto:1,"void":2,"enum":1,"else":1,"break":1,"new":1,extern:1,using:1,"true":1,"class":1,asm:1,"case":1,typeid:1,"short":1,reinterpret_cast:2,"default":1,"double":1,register:1,explicit:1,signed:1,typename:1,"try":1,"this":1,"switch":1,"continue":1,wchar_t:1,inline:1,"delete":1,alignof:1,char16_t:1,char32_t:1,constexpr:1,decltype:1,noexcept:1,nullptr:1,static_assert:1,thread_local:1,restrict:1,_Bool:1,complex:1},built_in:{std:1,string:1,cin:1,cout:1,cerr:1,clog:1,stringstream:1,istringstream:1,ostringstream:1,auto_ptr:1,deque:1,list:1,queue:1,stack:1,vector:1,map:1,set:1,bitset:1,multiset:1,multimap:1,unordered_set:1,unordered_map:1,unordered_multiset:1,unordered_multimap:1,array:1,shared_ptr:1}};return{dM:{k:a,i:"</",c:[hljs.CLCM,hljs.CBLCLM,hljs.QSM,{cN:"string",b:"'\\\\?.",e:"'",i:"."},{cN:"number",b:"\\b(\\d+(\\.\\d*)?|\\.\\d+)(u|U|l|L|ul|UL|f|F)"},hljs.CNM,{cN:"preprocessor",b:"#",e:"$"},{cN:"stl_container",b:"\\b(deque|list|queue|stack|vector|map|set|bitset|multiset|multimap|unordered_map|unordered_set|unordered_multiset|unordered_multimap|array)\\s*<",e:">",k:a,r:10,c:["self"]}]}}}();hljs.LANGUAGES.r={dM:{c:[hljs.HCM,{cN:"number",b:"\\b0[xX][0-9a-fA-F]+[Li]?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+(?:[eE][+\\-]?\\d*)?L\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\b\\d+\\.(?!\\d)(?:i\\b)?",e:hljs.IMMEDIATE_RE,r:1},{cN:"number",b:"\\b\\d+(?:\\.\\d*)?(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"number",b:"\\.\\d+(?:[eE][+\\-]?\\d*)?i?\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"keyword",b:"(?:tryCatch|library|setGeneric|setGroupGeneric)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\.",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\.\\.\\d+(?![\\w.])",e:hljs.IMMEDIATE_RE,r:10},{cN:"keyword",b:"\\b(?:function)",e:hljs.IMMEDIATE_RE,r:2},{cN:"keyword",b:"(?:if|in|break|next|repeat|else|for|return|switch|while|try|stop|warning|require|attach|detach|source|setMethod|setClass)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"literal",b:"(?:NA|NA_integer_|NA_real_|NA_character_|NA_complex_)\\b",e:hljs.IMMEDIATE_RE,r:10},{cN:"literal",b:"(?:NULL|TRUE|FALSE|T|F|Inf|NaN)\\b",e:hljs.IMMEDIATE_RE,r:1},{cN:"identifier",b:"[a-zA-Z.][a-zA-Z0-9._]*\\b",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"<\\-(?!\\s*\\d)",e:hljs.IMMEDIATE_RE,r:2},{cN:"operator",b:"\\->|<\\-",e:hljs.IMMEDIATE_RE,r:1},{cN:"operator",b:"%%|~",e:hljs.IMMEDIATE_RE},{cN:"operator",b:">=|<=|==|!=|\\|\\||&&|=|\\+|\\-|\\*|/|\\^|>|<|!|&|\\||\\$|:",e:hljs.IMMEDIATE_RE,r:0},{cN:"operator",b:"%",e:"%",i:"\\n",r:1},{cN:"identifier",b:"`",e:"`",r:0},{cN:"string",b:'"',e:'"',c:[hljs.BE],r:0},{cN:"string",b:"'",e:"'",c:[hljs.BE],r:0},{cN:"paren",b:"[[({\\])}]",e:hljs.IMMEDIATE_RE,r:0}]}};
+hljs.initHighlightingOnLoad();
+</script>
+
+
+
+<style type="text/css">
+body, td {
+   font-family: sans-serif;
+   background-color: white;
+   font-size: 13px;
+}
+
+body {
+  max-width: 800px;
+  margin: auto;
+  padding: 1em;
+  line-height: 20px;
+}
+
+tt, code, pre {
+   font-family: 'DejaVu Sans Mono', 'Droid Sans Mono', 'Lucida Console', Consolas, Monaco, monospace;
+}
+
+h1 {
+   font-size:2.2em;
+}
+
+h2 {
+   font-size:1.8em;
+}
+
+h3 {
+   font-size:1.4em;
+}
+
+h4 {
+   font-size:1.0em;
+}
+
+h5 {
+   font-size:0.9em;
+}
+
+h6 {
+   font-size:0.8em;
+}
+
+a:visited {
+   color: rgb(50%, 0%, 50%);
+}
+
+pre, img {
+  max-width: 100%;
+}
+pre {
+  overflow-x: auto;
+}
+pre code {
+   display: block; padding: 0.5em;
+}
+
+code {
+  font-size: 92%;
+  border: 1px solid #ccc;
+}
+
+code[class] {
+  background-color: #F8F8F8;
+}
+
+table, td, th {
+  border: none;
+}
+
+blockquote {
+   color:#666666;
+   margin:0;
+   padding-left: 1em;
+   border-left: 0.5em #EEE solid;
+}
+
+hr {
+   height: 0px;
+   border-bottom: none;
+   border-top-width: thin;
+   border-top-style: dotted;
+   border-top-color: #999999;
+}
+
+@media print {
+   * {
+      background: transparent !important;
+      color: black !important;
+      filter:none !important;
+      -ms-filter: none !important;
+   }
+
+   body {
+      font-size:12pt;
+      max-width:100%;
+   }
+
+   a, a:visited {
+      text-decoration: underline;
+   }
+
+   hr {
+      visibility: hidden;
+      page-break-before: always;
+   }
+
+   pre, blockquote {
+      padding-right: 1em;
+      page-break-inside: avoid;
+   }
+
+   tr, img {
+      page-break-inside: avoid;
+   }
+
+   img {
+      max-width: 100% !important;
+   }
+
+   @page :left {
+      margin: 15mm 20mm 15mm 10mm;
+   }
+
+   @page :right {
+      margin: 15mm 10mm 15mm 20mm;
+   }
+
+   p, h2, h3 {
+      orphans: 3; widows: 3;
+   }
+
+   h2, h3 {
+      page-break-after: avoid;
+   }
+}
+</style>
+
+
+
+</head>
+
+<body>
+<h1>Gestión de datos con R</h1>
+
+<p><a href="http://bioinfo.cipf.es/" title="webpage of department">Francisco García García</a> <em>(2014-12-16)</em>  </p>
+
+<hr/>
+
+<h3>0. Introducción</h3>
+
+<h3>1. Ordenación</h3>
+
+<h3>2. Filtrado</h3>
+
+<h3>3. Recodificación de variables</h3>
+
+<h3>4. Transformación de variables</h3>
+
+<h3>5. Categorizar una variable cuantitativa en una cualitativa</h3>
+
+<h3>6. Ejercicios</h3>
+
+<h3>7. Enlaces de interés</h3>
+
+<hr/>
+
+<p><br />
+<br />
+<br /></p>
+
+<h2>0. Introducción</h2>
+
+<p>R nos permite realizar operaciones de gestión de datos como son la ordenación, la selección o exclusión de grupos de registros o variables, 
+recodificación de variables, transformación de variables, categorización de variables cuantitativas en categóricas&hellip;.</p>
+
+<p>A continuación se detalla cada una de estas acciones.
+<br />
+<br /></p>
+
+<h2>1. Ordenación</h2>
+
+<p>Comenzamos leyendo la base de datos <strong>riesgos</strong>  sobre la que realizaremos diversas gestiones de manejo de datos:</p>
+
+<pre><code class="r">datos &lt;- read.csv(&quot;riesgos.csv&quot;, header = T, sep = &quot;\t&quot;)
+</code></pre>
+
+<p>Echamos un vistazo a la estructura de los datos:</p>
+
+<pre><code class="r">str(datos)
+</code></pre>
+
+<pre><code>#&gt; &#39;data.frame&#39;:    91 obs. of  10 variables:
+#&gt;  $ id        : int  2 3 6 7 8 10 11 12 14 15 ...
+#&gt;  $ contrato  : int  3 1 5 1 3 2 1 3 1 1 ...
+#&gt;  $ jornada   : Factor w/ 2 levels &quot;completa&quot;,&quot;parcial&quot;: 1 1 1 1 1 1 1 1 1 1 ...
+#&gt;  $ turno     : int  1 1 1 1 1 1 1 1 3 1 ...
+#&gt;  $ carfisi   : Factor w/ 2 levels &quot;no&quot;,&quot;sí&quot;: 1 1 2 2 2 1 1 1 1 1 ...
+#&gt;  $ carpsiqui : Factor w/ 2 levels &quot;no&quot;,&quot;sí&quot;: 1 1 1 1 1 2 1 1 2 2 ...
+#&gt;  $ expquímica: Factor w/ 2 levels &quot;no&quot;,&quot;sí&quot;: 1 1 1 1 2 1 1 1 1 1 ...
+#&gt;  $ edad      : int  33 37 35 30 30 32 27 33 31 31 ...
+#&gt;  $ peso      : num  74 74 67 57 69 56 74 76 65 NA ...
+#&gt;  $ talla     : num  155 170 170 164 160 160 170 165 170 173 ...
+</code></pre>
+
+<pre><code class="r">head(datos)
+</code></pre>
+
+<pre><code>#&gt;   id contrato  jornada turno carfisi carpsiqui expquímica edad peso talla
+#&gt; 1  2        3 completa     1      no        no         no   33   74   155
+#&gt; 2  3        1 completa     1      no        no         no   37   74   170
+#&gt; 3  6        5 completa     1      sí        no         no   35   67   170
+#&gt; 4  7        1 completa     1      sí        no         no   30   57   164
+#&gt; 5  8        3 completa     1      sí        no         sí   30   69   160
+#&gt; 6 10        2 completa     1      no        sí         no   32   56   160
+</code></pre>
+
+<pre><code class="r">tail(datos)
+</code></pre>
+
+<pre><code>#&gt;    id contrato jornada turno carfisi carpsiqui expquímica edad peso talla
+#&gt; 86 73        5 parcial     1      no        no         no   32   65   159
+#&gt; 87 75        1 parcial     1      no        no         no   33   87   185
+#&gt; 88 76        1 parcial     1      sí        no         no   30   76   178
+#&gt; 89 80        4 parcial     1      no        no         no   29   65   153
+#&gt; 90 82        1 parcial     1      no        no         no   35   78   190
+#&gt; 91 86        4 parcial     4      no        no         no   28   65   167
+</code></pre>
+
+<p>Con la función <strong>attach</strong> hacemos accesible la base de datos seleccionada:</p>
+
+<pre><code class="r">attach(datos)
+</code></pre>
+
+<pre><code>#&gt; The following objects are masked from datos (position 3):
+#&gt; 
+#&gt;     carfisi, carpsiqui, contrato, edad, expquímica, id, jornada,
+#&gt;     peso, talla, turno
+#&gt; The following objects are masked from datos (position 9):
+#&gt; 
+#&gt;     carfisi, carpsiqui, contrato, edad, expquímica, id, jornada,
+#&gt;     peso, talla, turno
+</code></pre>
+
+<p>Ordenamos los datos por la variable <strong>edad</strong> y guardamos esta nueva información en <strong>datos2</strong>:</p>
+
+<pre><code class="r">datos2 &lt;- datos[order(edad), ]
+head(datos2)
+</code></pre>
+
+<pre><code>#&gt;    id contrato  jornada turno carfisi carpsiqui expquímica edad peso talla
+#&gt; 57 78        1 completa     1      no        no         no   23   62   155
+#&gt; 15 20        1 completa     1      sí        sí         no   25   NA   175
+#&gt; 76 30        2  parcial     1      no        no         no   25   65   153
+#&gt; 31 44        4 completa     1      sí        no         no   26   56   150
+#&gt; 35 50        1 completa     1      no        sí         no   26   68   172
+#&gt; 44 61        2 completa     1      no        sí         no   26   96   175
+</code></pre>
+
+<p>Ordenamos los datos por la variable <strong>edad</strong> en sentido decreciente y guardamos esta nueva información en <strong>datos2</strong>:</p>
+
+<pre><code class="r">datos2 &lt;- datos[order(-edad), ]
+head(datos2)
+</code></pre>
+
+<pre><code>#&gt;    id contrato  jornada turno carfisi carpsiqui expquímica edad peso talla
+#&gt; 11 16        3 completa     1      no        sí         no   39   75   158
+#&gt; 32 46        3 completa     1      no        no         no   39   54   160
+#&gt; 79 39        4  parcial     4      no        no         no   39   69   175
+#&gt; 21 28        1 completa     1      no        sí         no   38   62   155
+#&gt; 2   3        1 completa     1      no        no         no   37   74   170
+#&gt; 25 36        1 completa     1      sí        sí         no   37   65   167
+</code></pre>
+
+<p>Ordenamos los datos: primero por la variable <strong>edad</strong> en sentido decreciente y en segundo lugar por la
+variable <strong>peso</strong> en sentido creciente y guardamos esta nueva información en <strong>datos2</strong>:</p>
+
+<pre><code class="r">datos2 &lt;- datos[order(-edad,peso), ]
+head(datos2)
+</code></pre>
+
+<pre><code>#&gt;    id contrato  jornada turno carfisi carpsiqui expquímica edad peso talla
+#&gt; 32 46        3 completa     1      no        no         no   39   54   160
+#&gt; 79 39        4  parcial     4      no        no         no   39   69   175
+#&gt; 11 16        3 completa     1      no        sí         no   39   75   158
+#&gt; 21 28        1 completa     1      no        sí         no   38   62   155
+#&gt; 28 40        1 completa     1      no        sí         no   37   54   165
+#&gt; 25 36        1 completa     1      sí        sí         no   37   65   167
+</code></pre>
+
+<p><br />
+<br /></p>
+
+<h2>2. Filtrado</h2>
+
+<p>En ocasiones necesitamos seleccionar un determinado grupo de variables o un determinado grupo de registros. O ambas cosas a la vez.
+<strong>¿Cómo realizamos este filtrado desde R?</strong> Vemos algunos ejemplos con la base de datos <strong>riesgos.csv</strong>:</p>
+
+<pre><code class="r">head(datos) 
+</code></pre>
+
+<pre><code>#&gt;   id contrato  jornada turno carfisi carpsiqui expquímica edad peso talla
+#&gt; 1  2        3 completa     1      no        no         no   33   74   155
+#&gt; 2  3        1 completa     1      no        no         no   37   74   170
+#&gt; 3  6        5 completa     1      sí        no         no   35   67   170
+#&gt; 4  7        1 completa     1      sí        no         no   30   57   164
+#&gt; 5  8        3 completa     1      sí        no         sí   30   69   160
+#&gt; 6 10        2 completa     1      no        sí         no   32   56   160
+</code></pre>
+
+<p>Seleccionamos las variables id, contrato y carfisi (son <strong>columnas</strong> en la base de datos). Guardamos la nueva información en <strong>datos2</strong>:</p>
+
+<pre><code class="r">datos2 &lt;- datos[, c(&quot;id&quot;, &quot;contrato&quot;, &quot;carfisi&quot;)]
+head(datos2)
+</code></pre>
+
+<pre><code>#&gt;   id contrato carfisi
+#&gt; 1  2        3      no
+#&gt; 2  3        1      no
+#&gt; 3  6        5      sí
+#&gt; 4  7        1      sí
+#&gt; 5  8        3      sí
+#&gt; 6 10        2      no
+</code></pre>
+
+<p>Ahora seleccionamos los 3 primeros registros de la base <strong>riesgos</strong> y los guardaremos en <strong>datos2</strong>:</p>
+
+<pre><code class="r">datos2 &lt;- datos[1:3, ]
+head(datos2)
+</code></pre>
+
+<pre><code>#&gt;   id contrato  jornada turno carfisi carpsiqui expquímica edad peso talla
+#&gt; 1  2        3 completa     1      no        no         no   33   74   155
+#&gt; 2  3        1 completa     1      no        no         no   37   74   170
+#&gt; 3  6        5 completa     1      sí        no         no   35   67   170
+</code></pre>
+
+<p>También podemos seleccionar registros (<strong>filas</strong> en la base de datos) que verifiquen algún criterio de selección. Por ejemplo,
+ estamos interesamos en realizar una subselección de la base de datos <strong>riesgos</strong> que incluya sólo personas con <strong>jornada completa</strong>:</p>
+
+<pre><code class="r">datos2 &lt;- datos[jornada==&quot;completa&quot;,  ] 
+head(datos2)
+</code></pre>
+
+<pre><code>#&gt;   id contrato  jornada turno carfisi carpsiqui expquímica edad peso talla
+#&gt; 1  2        3 completa     1      no        no         no   33   74   155
+#&gt; 2  3        1 completa     1      no        no         no   37   74   170
+#&gt; 3  6        5 completa     1      sí        no         no   35   67   170
+#&gt; 4  7        1 completa     1      sí        no         no   30   57   164
+#&gt; 5  8        3 completa     1      sí        no         sí   30   69   160
+#&gt; 6 10        2 completa     1      no        sí         no   32   56   160
+</code></pre>
+
+<pre><code class="r">table(datos2$jornada)
+</code></pre>
+
+<pre><code>#&gt; 
+#&gt; completa  parcial 
+#&gt;       67        0
+</code></pre>
+
+<p>Por último queremos realizar la siguiente subselección: sólo nos quedaremos con las variables  id, contrato y carfisi (<strong>columnas</strong>).
+Al mismo tiempo,  seleccionaremos los registros con <strong>jornada completa</strong> (<strong>filas</strong>):</p>
+
+<pre><code class="r">datos2 &lt;- datos[jornada==&quot;completa&quot;, c(&quot;id&quot;, &quot;contrato&quot;, &quot;carfisi&quot;)]
+head(datos2)
+</code></pre>
+
+<pre><code>#&gt;   id contrato carfisi
+#&gt; 1  2        3      no
+#&gt; 2  3        1      no
+#&gt; 3  6        5      sí
+#&gt; 4  7        1      sí
+#&gt; 5  8        3      sí
+#&gt; 6 10        2      no
+</code></pre>
+
+<p><br />
+<br /></p>
+
+<h2>3. Recodificación de variables</h2>
+
+<p>Hay varias situaciones en las que nos interesará la recodificación de las variables:</p>
+
+<p><strong>3.1. Recodificamos los valores de una variable por otros valores en esa misma variable.</strong>
+ Ejemplo: queremos cambiar los valores de la <strong>talla &gt; 165</strong> por <strong>180</strong>: </p>
+
+<pre><code class="r">talla
+</code></pre>
+
+<pre><code>#&gt;  [1] 155 170 170 164 160 160 170 165 170 173 158 165 161 168 175 168 165
+#&gt; [18] 159 185 153 155 170 172 160 167 179 160 165 170 170 150 160 150 180
+#&gt; [35] 172 165 170 150 168 170 165 162 170 175 170 170 175 164 164 165 175
+#&gt; [52] 165 168 165 150 153 155 168 159 170 172 160 179 160 175 165 160 176
+#&gt; [69] 160 165 177 173 150 178 168 153 159 190 175 160 167 159 175 164 160
+#&gt; [86] 159 185 178 153 190 167
+</code></pre>
+
+<pre><code class="r">talla[talla &gt; 165] &lt;- 200 
+talla
+</code></pre>
+
+<pre><code>#&gt;  [1] 155 200 200 164 160 160 200 165 200 200 158 165 161 200 200 200 165
+#&gt; [18] 159 200 153 155 200 200 160 200 200 160 165 200 200 150 160 150 200
+#&gt; [35] 200 165 200 150 200 200 165 162 200 200 200 200 200 164 164 165 200
+#&gt; [52] 165 200 165 150 153 155 200 159 200 200 160 200 160 200 165 160 200
+#&gt; [69] 160 165 200 200 150 200 200 153 159 200 200 160 200 159 200 164 160
+#&gt; [86] 159 200 200 153 200 200
+</code></pre>
+
+<p><strong>3.2. O bien realizamos una recodificación de valores pero en otra variable distinta de la inicial:</strong></p>
+
+<pre><code class="r">peso2 &lt;- peso
+peso2[peso &gt; 75] &lt;- 99 
+peso
+</code></pre>
+
+<pre><code>#&gt;  [1] 74 74 67 57 69 56 74 76 65 NA 75 65 57 76 NA 68 78 65 87 59 62 76 93
+#&gt; [24] 64 65 87 54 54 75 76 56 54 70 70 68 88 90 65 58 65 88 89 60 96 90 60
+#&gt; [47] 60 54 85 69 70 52 68 78 57 59 62 76 78 76 93 64 87 54 69 54 67 98 67
+#&gt; [70] 87 76 83 57 76 76 65 78 78 69 67 75 50 69 56 50 65 87 76 65 78 65
+</code></pre>
+
+<pre><code class="r">peso2
+</code></pre>
+
+<pre><code>#&gt;  [1] 74 74 67 57 69 56 74 99 65 NA 75 65 57 99 NA 68 99 65 99 59 62 99 99
+#&gt; [24] 64 65 99 54 54 75 99 56 54 70 70 68 99 99 65 58 65 99 99 60 99 99 60
+#&gt; [47] 60 54 99 69 70 52 68 99 57 59 62 99 99 99 99 64 99 54 69 54 67 99 67
+#&gt; [70] 99 99 99 57 99 99 65 99 99 69 67 75 50 69 56 50 65 99 99 65 99 65
+</code></pre>
+
+<p><br />
+<br /></p>
+
+<h2>4. Transformación de variables</h2>
+
+<p><strong>¿Cómo podemos incorporar nuevas variables en nuestra base de datos?</strong> Veamos algunos ejemplos:</p>
+
+<p>Queremos crear una variable en la base de datos <strong>riesgos.csv</strong> que se llame <strong>índice de masa corporal</strong> que se obtiene dividiendo
+el peso en kg. entre el cuadrado de la altura en metros. Veamos como lo hacemos en R:</p>
+
+<pre><code class="r">datos[, &quot;IMC&quot;]  &lt;- peso / (talla/100)^2
+head(datos)
+</code></pre>
+
+<pre><code>#&gt;   id contrato  jornada turno carfisi carpsiqui expquímica edad peso talla
+#&gt; 1  2        3 completa     1      no        no         no   33   74   155
+#&gt; 2  3        1 completa     1      no        no         no   37   74   170
+#&gt; 3  6        5 completa     1      sí        no         no   35   67   170
+#&gt; 4  7        1 completa     1      sí        no         no   30   57   164
+#&gt; 5  8        3 completa     1      sí        no         sí   30   69   160
+#&gt; 6 10        2 completa     1      no        sí         no   32   56   160
+#&gt;        IMC
+#&gt; 1 30.80125
+#&gt; 2 18.50000
+#&gt; 3 16.75000
+#&gt; 4 21.19274
+#&gt; 5 26.95312
+#&gt; 6 21.87500
+</code></pre>
+
+<p><br />
+<br /></p>
+
+<h2>5. Categorizar una variable cuantitativa en una cualitativa</h2>
+
+<p>Esta opción suele ser muy habitual. Disponemos de la información detallada para una variable pero en ocasiones
+nos interesa trabajar con esta variable en su versión categórica.</p>
+
+<p>Por ejemplo, categorizaremos la variable cuantitativa <strong>IMC</strong> en cuatro grupos:  </p>
+
+<ul>
+<li><strong>bajo peso</strong>:  IMC &lt;= 18.50</li>
+<li><strong>normal</strong>:  18.5 &lt; IMC &lt;=25</li>
+<li><strong>sobrepeso</strong>:  25 &lt; IMC &lt;= 30</li>
+<li><strong>obesidad</strong>:     IMC &gt;30
+En realidad buscamos los siguientes tramos de edad:  (minimo, 18.5], (18.5, 25], (25, 30], (30, máximo]</li>
+</ul>
+
+<pre><code class="r">summary(datos[,&quot;IMC&quot;])
+</code></pre>
+
+<pre><code>#&gt;    Min. 1st Qu.  Median    Mean 3rd Qu.    Max.    NA&#39;s 
+#&gt;   14.50   19.00   21.75   22.45   25.71   33.91       2
+</code></pre>
+
+<pre><code class="r">datos[,&quot;IMC_grupos&quot;] &lt;- cut(datos$IMC, breaks = c(14,18.5,25,30,34), labels = c(&quot;bajo peso&quot;, &quot;normal&quot;, &quot;sobrepreso&quot;, &quot;obesidad&quot;))
+head(datos)
+</code></pre>
+
+<pre><code>#&gt;   id contrato  jornada turno carfisi carpsiqui expquímica edad peso talla
+#&gt; 1  2        3 completa     1      no        no         no   33   74   155
+#&gt; 2  3        1 completa     1      no        no         no   37   74   170
+#&gt; 3  6        5 completa     1      sí        no         no   35   67   170
+#&gt; 4  7        1 completa     1      sí        no         no   30   57   164
+#&gt; 5  8        3 completa     1      sí        no         sí   30   69   160
+#&gt; 6 10        2 completa     1      no        sí         no   32   56   160
+#&gt;        IMC IMC_grupos
+#&gt; 1 30.80125   obesidad
+#&gt; 2 18.50000  bajo peso
+#&gt; 3 16.75000  bajo peso
+#&gt; 4 21.19274     normal
+#&gt; 5 26.95312 sobrepreso
+#&gt; 6 21.87500     normal
+</code></pre>
+
+<p>¿Cuántas personas tenemos en cada uno de las categorías de IMC?</p>
+
+<pre><code class="r">table(datos[,&quot;IMC_grupos&quot;])
+</code></pre>
+
+<pre><code>#&gt; 
+#&gt;  bajo peso     normal sobrepreso   obesidad 
+#&gt;         19         41         19         10
+</code></pre>
+
+<p><br />
+<br /></p>
+
+<h2>6. Ejercicios</h2>
+
+<p>En la base de datos <strong>estres.csv</strong> se incluye información sobre los niveles de estrés de un grupo de trabajadores, así
+como otras variables de interés.</p>
+
+<p>Realiza las siguientes actividades en R:</p>
+
+<ul>
+<li><strong>A</strong>. Lee la base de datos <em>estres</em>,  examina la estructura de los datos (<em>str</em>) y utiliza la función <em>attach</em> 
+para hacerla accesible y trabajar más cómodamente con sus variables. ¿Qué variables son <em>factor</em>? ¿Y qué variables son <em>integer</em>?</li>
+<li><strong>B</strong>. ¿Qué ID tiene la persona con mejor salario? Una opción podría ser la ordenación de la base de datos 
+por la variable <em>salario</em> en sentido decreciente. </li>
+<li><strong>C</strong>. Realiza una <em>subselección</em> en  <em>datos</em> que guardaremos en <em>datos2</em>, 
+con los trabajadores que tengan un nivel de estrés mayor de 5. </li>
+<li><strong>D</strong>. También nos gustaría seleccionar los trabajadores  que presenten simultáneamente  carga física &gt; 3, carga psíquica &gt; 4 y ruido &gt; 4. 
+Salvaremos la subselección en <em>datos3</em>.</li>
+<li><strong>E</strong>. Nos hemos equivocado en la introducción de datos y para todos los valores <em>2</em> de carga física, queríamos haber puesto 
+un <em>3</em>. <em>Recodifica</em> esta variable en ella misma incluyendo este cambio.</li>
+<li><strong>F</strong>. Crea una nueva variable llamada <em>expo_total</em> que se obtenga como suma de los valores de exposición en <em>carga física</em>,
+<em>carga psíquica</em> y <em>ruido</em>.</li>
+<li><strong>G</strong>. <em>Categoriza</em> la variable <em>estres</em> en otra nueva variable que llamaremos <em>estres_grupo</em> que incluya tres categorías:
+<em>bajo</em>: 1 a 2;  <em>medio</em>: 3 a 7;  <em>alto</em>; 8 a 10. ¿Cuántas personas hay en cada categoría de la nueva variable.
+<br />
+<br /></li>
+</ul>
+
+<h2>7. Enlaces de interés</h2>
+
+<ul>
+<li><p><a href="http://www.statmethods.net/">Quick-R</a>   Web con recursos para trabajar con R.</p></li>
+<li><p><a href="http://www.r-tutor.com/">r-tutor</a>  An R Introduction to Statistics.</p></li>
+</ul>
+
+<hr/>
+
+</body>
+
+</html>
