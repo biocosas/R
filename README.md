@@ -1,7 +1,4 @@
-hola
 
+Some [R](http://cran.r-project.org/) teaching materials. 
 
-[ver html](graficos_estadisticos_1.html)
-
-[descargar R](graficos_estadisticos_1.r)
-
+Find the web site [here](https://biocosas.github.io/R)
